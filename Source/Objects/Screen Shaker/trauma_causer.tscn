@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvirvc01txt32"]
+
+[ext_resource type="Script" path="res://Source/Objects/Screen Shaker/Trauma_causer.gd" id="1_8f7vy"]
+
+[node name="Trauma_causer" type="Area3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_8f7vy")

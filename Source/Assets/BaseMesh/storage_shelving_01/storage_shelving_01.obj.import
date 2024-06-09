@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://csia3c852cr1k"
+path="res://.godot/imported/storage_shelving_01.obj-9b373fd064efa02850e982f9fa80cec0.mesh"
+
+[deps]
+
+files=["res://.godot/imported/storage_shelving_01.obj-9b373fd064efa02850e982f9fa80cec0.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/storage_shelving_01/storage_shelving_01.obj"
+dest_files=["res://.godot/imported/storage_shelving_01.obj-9b373fd064efa02850e982f9fa80cec0.mesh", "res://.godot/imported/storage_shelving_01.obj-9b373fd064efa02850e982f9fa80cec0.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

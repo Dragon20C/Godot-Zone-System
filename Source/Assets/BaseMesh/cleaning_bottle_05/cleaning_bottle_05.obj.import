@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://he68po6juv14"
+path="res://.godot/imported/cleaning_bottle_05.obj-ab711bcfe789c1524e2681eef73c4b90.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cleaning_bottle_05.obj-ab711bcfe789c1524e2681eef73c4b90.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/cleaning_bottle_05/cleaning_bottle_05.obj"
+dest_files=["res://.godot/imported/cleaning_bottle_05.obj-ab711bcfe789c1524e2681eef73c4b90.mesh", "res://.godot/imported/cleaning_bottle_05.obj-ab711bcfe789c1524e2681eef73c4b90.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

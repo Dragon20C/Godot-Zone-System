@@ -1,0 +1,121 @@
+[gd_scene load_steps=22 format=3 uid="uid://bxxkwuc4td8ui"]
+
+[ext_resource type="Script" path="res://Source/Objects/Player/Statemachine/Defaults/PlayerStatemachine.gd" id="1_1ecdx"]
+[ext_resource type="Script" path="res://Source/Objects/Player/Modules/FootstepHandler.gd" id="1_3fjps"]
+[ext_resource type="Script" path="res://Source/Objects/Player/player.gd" id="1_k20cw"]
+[ext_resource type="AudioStream" uid="uid://drqn6cqf8n4av" path="res://Source/Assets/Sounds/Motion sfx/footstep_1.WAV" id="2_msfg5"]
+[ext_resource type="AudioStream" uid="uid://dagraroes5d60" path="res://Source/Assets/Sounds/Motion sfx/footstep_2.WAV" id="3_y116u"]
+[ext_resource type="AudioStream" uid="uid://b2ow3esxpqhkt" path="res://Source/Assets/Sounds/Motion sfx/footstep_3.WAV" id="4_lddmi"]
+[ext_resource type="AudioStream" uid="uid://do4hd0r7lfu3g" path="res://Source/Assets/Sounds/Motion sfx/footstep_4.WAV" id="5_qva3b"]
+[ext_resource type="AudioStream" uid="uid://dcc8bn50v73gn" path="res://Source/Assets/Sounds/Motion sfx/footstep_5.WAV" id="6_pa500"]
+[ext_resource type="AudioStream" uid="uid://bem3o8dvrqwbk" path="res://Source/Assets/Sounds/Motion sfx/footstep_6.WAV" id="7_g67wi"]
+[ext_resource type="AudioStream" uid="uid://b1kgakldjstdn" path="res://Source/Assets/Sounds/Motion sfx/jump.WAV" id="8_q2oyx"]
+[ext_resource type="AudioStream" uid="uid://bx8r3q74yda2b" path="res://Source/Assets/Sounds/Motion sfx/landing.WAV" id="9_g8cvf"]
+[ext_resource type="Script" path="res://Source/Objects/Player/Modules/StairsHandler.gd" id="13_0y7xp"]
+[ext_resource type="Script" path="res://Source/Objects/Player/Modules/HeadbobHandler.gd" id="13_20tql"]
+[ext_resource type="PackedScene" uid="uid://bwvux4njpoi0y" path="res://Source/Objects/Screen Shaker/camera_shaker.tscn" id="13_i01pp"]
+[ext_resource type="Script" path="res://Source/Objects/Player/PerkHandler.gd" id="14_fwj66"]
+[ext_resource type="Script" path="res://Source/Systems/Interaction System/Interaction System.gd" id="14_uihtp"]
+[ext_resource type="Texture2D" uid="uid://b36graslbugjw" path="res://Source/Assets/Textures/Misc/FlashLightTexture.jpg" id="16_cnkrv"]
+[ext_resource type="Script" path="res://Source/Objects/Flashlight/Flashlight.gd" id="17_f6you"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_i10sh"]
+top_radius = 0.3
+bottom_radius = 0.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s4kw5"]
+radius = 0.3
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgkvk"]
+size = Vector3(1, 0.5, 1)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("horizontal", "vertical")]
+script = ExtResource("1_k20cw")
+horizontal = NodePath("Horizontal")
+vertical = NodePath("Horizontal/Vertical")
+
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CylinderMesh_i10sh")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CylinderShape3D_s4kw5")
+
+[node name="Modules" type="Node" parent="."]
+
+[node name="Statemachine" type="Node" parent="Modules" node_paths=PackedStringArray("Entity")]
+script = ExtResource("1_1ecdx")
+Entity = NodePath("../..")
+
+[node name="FootstepHandler" type="Node" parent="Modules" node_paths=PackedStringArray("audio_emitter", "player")]
+script = ExtResource("1_3fjps")
+footstep_sound = Array[AudioStream]([ExtResource("2_msfg5"), ExtResource("3_y116u"), ExtResource("4_lddmi"), ExtResource("5_qva3b"), ExtResource("6_pa500"), ExtResource("7_g67wi")])
+jumping_sound = ExtResource("8_q2oyx")
+landing_sound = ExtResource("9_g8cvf")
+audio_emitter = NodePath("../../AudioEmitter")
+player = NodePath("../..")
+
+[node name="HeadbobHandler" type="Node" parent="Modules" node_paths=PackedStringArray("player", "camera_container")]
+script = ExtResource("13_20tql")
+player = NodePath("../..")
+camera_container = NodePath("../../Horizontal/Vertical/CameraContainer/CameraShaker")
+
+[node name="StairsHandler" type="Node" parent="Modules" node_paths=PackedStringArray("player", "target_position")]
+script = ExtResource("13_0y7xp")
+player = NodePath("../..")
+target_position = NodePath("../../Target")
+CAMERA_SMOOTHING = 10.0
+
+[node name="Interaction System" type="Node" parent="Modules" node_paths=PackedStringArray("detect_area")]
+script = ExtResource("14_uihtp")
+detect_area = NodePath("../../InteractArea")
+
+[node name="AudioEmitter" type="AudioStreamPlayer3D" parent="."]
+bus = &"Footsteps"
+
+[node name="Target" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Horizontal" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+top_level = true
+
+[node name="Vertical" type="Node3D" parent="Horizontal"]
+
+[node name="CameraContainer" type="Node3D" parent="Horizontal/Vertical"]
+
+[node name="CameraShaker" parent="Horizontal/Vertical/CameraContainer" instance=ExtResource("13_i01pp")]
+max_x = 10.0
+max_y = 8.0
+noise_speed = 80.0
+
+[node name="Flashlight" type="SpotLight3D" parent="Horizontal/Vertical/CameraContainer"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.4)
+visible = false
+light_energy = 2.0
+light_projector = ExtResource("16_cnkrv")
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 25.0
+script = ExtResource("17_f6you")
+sway_amount = 0.02
+max_pos_sway_amount = Vector3(0.1, 0.1, 0.1)
+max_rot_sway_amount = Vector3(0.1, 0.1, 0.1)
+sway_rot_speed = 4.0
+sway_return_speed = 8.0
+
+[node name="PerkHandler" type="Node3D" parent="."]
+script = ExtResource("14_fwj66")
+
+[node name="InteractArea" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_lgkvk")

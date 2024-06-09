@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cmjxuj5fq6ddr"
+path="res://.godot/imported/stem_bar_table_01.obj-1985fbadd4167f8079913afa44522485.mesh"
+
+[deps]
+
+files=["res://.godot/imported/stem_bar_table_01.obj-1985fbadd4167f8079913afa44522485.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/stem_bar_table_01/stem_bar_table_01.obj"
+dest_files=["res://.godot/imported/stem_bar_table_01.obj-1985fbadd4167f8079913afa44522485.mesh", "res://.godot/imported/stem_bar_table_01.obj-1985fbadd4167f8079913afa44522485.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

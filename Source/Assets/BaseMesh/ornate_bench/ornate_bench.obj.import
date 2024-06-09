@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c6kflidic5022"
+path="res://.godot/imported/ornate_bench.obj-1850680db4ce52c082c7fb3e17e3c9ac.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ornate_bench.obj-1850680db4ce52c082c7fb3e17e3c9ac.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/ornate_bench/ornate_bench.obj"
+dest_files=["res://.godot/imported/ornate_bench.obj-1850680db4ce52c082c7fb3e17e3c9ac.mesh", "res://.godot/imported/ornate_bench.obj-1850680db4ce52c082c7fb3e17e3c9ac.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cmwe62kc7xva5"
+path="res://.godot/imported/outdoor_folding_chair.obj-e109ec8bcb4ee9e50a621b9de01e21d4.mesh"
+
+[deps]
+
+files=["res://.godot/imported/outdoor_folding_chair.obj-e109ec8bcb4ee9e50a621b9de01e21d4.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/outdoor_folding_chair/outdoor_folding_chair.obj"
+dest_files=["res://.godot/imported/outdoor_folding_chair.obj-e109ec8bcb4ee9e50a621b9de01e21d4.mesh", "res://.godot/imported/outdoor_folding_chair.obj-e109ec8bcb4ee9e50a621b9de01e21d4.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

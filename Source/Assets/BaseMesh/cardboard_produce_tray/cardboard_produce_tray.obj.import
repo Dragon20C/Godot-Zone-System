@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d07hj3wbsl3mo"
+path="res://.godot/imported/cardboard_produce_tray.obj-72ba4ccd94da7fe5ef06b99bd414dcb6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/cardboard_produce_tray.obj-72ba4ccd94da7fe5ef06b99bd414dcb6.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/cardboard_produce_tray/cardboard_produce_tray.obj"
+dest_files=["res://.godot/imported/cardboard_produce_tray.obj-72ba4ccd94da7fe5ef06b99bd414dcb6.mesh", "res://.godot/imported/cardboard_produce_tray.obj-72ba4ccd94da7fe5ef06b99bd414dcb6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

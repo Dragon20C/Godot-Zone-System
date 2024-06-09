@@ -1,0 +1,424 @@
+[gd_scene load_steps=17 format=3 uid="uid://c4i7wqvvug872"]
+
+[ext_resource type="Texture2D" uid="uid://csd8keo6d4dgb" path="res://Source/Assets/Textures/Prototype/Dark_prototype.png" id="1_rh5dq"]
+[ext_resource type="Script" path="res://Source/Objects/Prompt/Prompt.gd" id="1_uunhp"]
+[ext_resource type="Script" path="res://Source/Objects/GUI/FPS.gd" id="2_rwl85"]
+[ext_resource type="PackedScene" uid="uid://bxxkwuc4td8ui" path="res://Source/Objects/Player/player.tscn" id="2_ur54k"]
+[ext_resource type="Script" path="res://Source/Systems/Zone System/ZoneSystem.gd" id="4_j8y77"]
+[ext_resource type="Script" path="res://Source/Systems/Zone System/Chunk.gd" id="4_q0jj1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yc01b"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_vf0jy"]
+sky_material = SubResource("ProceduralSkyMaterial_yc01b")
+
+[sub_resource type="Environment" id="Environment_iywvc"]
+background_mode = 2
+sky = SubResource("Sky_vf0jy")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40sri"]
+albedo_texture = ExtResource("1_rh5dq")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_vsxdh"]
+size = Vector3(10, 0.2, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ckfmr"]
+data = PackedVector3Array(-5, 0.1, 5, 5, 0.1, 5, -5, -0.1, 5, 5, 0.1, 5, 5, -0.1, 5, -5, -0.1, 5, 5, 0.1, -5, -5, 0.1, -5, 5, -0.1, -5, -5, 0.1, -5, -5, -0.1, -5, 5, -0.1, -5, 5, 0.1, 5, 5, 0.1, -5, 5, -0.1, 5, 5, 0.1, -5, 5, -0.1, -5, 5, -0.1, 5, -5, 0.1, -5, -5, 0.1, 5, -5, -0.1, -5, -5, 0.1, 5, -5, -0.1, 5, -5, -0.1, -5, 5, 0.1, 5, -5, 0.1, 5, 5, 0.1, -5, -5, 0.1, 5, -5, 0.1, -5, 5, 0.1, -5, -5, -0.1, 5, 5, -0.1, 5, -5, -0.1, -5, 5, -0.1, 5, 5, -0.1, -5, -5, -0.1, -5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_polgt"]
+size = Vector3(10, 4, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8be8o"]
+size = Vector3(3, 0.2, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wl1f8"]
+data = PackedVector3Array(-1.5, 0.1, 5, 1.5, 0.1, 5, -1.5, -0.1, 5, 1.5, 0.1, 5, 1.5, -0.1, 5, -1.5, -0.1, 5, 1.5, 0.1, -5, -1.5, 0.1, -5, 1.5, -0.1, -5, -1.5, 0.1, -5, -1.5, -0.1, -5, 1.5, -0.1, -5, 1.5, 0.1, 5, 1.5, 0.1, -5, 1.5, -0.1, 5, 1.5, 0.1, -5, 1.5, -0.1, -5, 1.5, -0.1, 5, -1.5, 0.1, -5, -1.5, 0.1, 5, -1.5, -0.1, -5, -1.5, 0.1, 5, -1.5, -0.1, 5, -1.5, -0.1, -5, 1.5, 0.1, 5, -1.5, 0.1, 5, 1.5, 0.1, -5, -1.5, 0.1, 5, -1.5, 0.1, -5, 1.5, 0.1, -5, -1.5, -0.1, 5, 1.5, -0.1, 5, -1.5, -0.1, -5, 1.5, -0.1, 5, 1.5, -0.1, -5, -1.5, -0.1, -5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yl7ry"]
+size = Vector3(3, 4, 10)
+
+[node name="Map" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iywvc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+shadow_blur = 0.1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Prompt" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 270.0
+offset_right = 20.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press E to interact"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_uunhp")
+
+[node name="FPS" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -34.0
+offset_right = 34.0
+offset_bottom = 59.0
+grow_horizontal = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "FPS : 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_rwl85")
+
+[node name="Player" parent="." instance=ExtResource("2_ur54k")]
+
+[node name="ZoneSystem" type="Node3D" parent="."]
+script = ExtResource("4_j8y77")
+
+[node name="Chunk1" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk2"), NodePath("../Chunk16")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk1"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_vsxdh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk1/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk1/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ckfmr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_polgt")
+
+[node name="Chunk2" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk1"), NodePath("../Chunk3")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk2"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_8be8o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk2/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk2/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wl1f8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_yl7ry")
+
+[node name="Chunk3" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk4"), NodePath("../Chunk2")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk3"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_vsxdh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk3/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk3/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ckfmr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_polgt")
+
+[node name="Chunk4" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 0, -20)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk5"), NodePath("../Chunk3")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk4"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_8be8o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk4/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk4/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wl1f8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_yl7ry")
+
+[node name="Chunk5" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -20)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk6"), NodePath("../Chunk4")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk5"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_vsxdh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk5/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk5/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ckfmr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_polgt")
+
+[node name="Chunk6" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -30)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk7"), NodePath("../Chunk5")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk6"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_8be8o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk6/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk6/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wl1f8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_yl7ry")
+
+[node name="Chunk7" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -40)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk8"), NodePath("../Chunk6")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk7"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_vsxdh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk7/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk7/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ckfmr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_polgt")
+
+[node name="Chunk8" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10, 0, -40)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk9"), NodePath("../Chunk7")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk8"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_8be8o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk8/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk8/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wl1f8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_yl7ry")
+
+[node name="Chunk9" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -40)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk10"), NodePath("../Chunk8")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk9"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_vsxdh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk9/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk9/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ckfmr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_polgt")
+
+[node name="Chunk10" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 10, 0, -40)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk11"), NodePath("../Chunk9")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk10"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_8be8o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk10/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk10/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wl1f8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_yl7ry")
+
+[node name="Chunk11" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -40)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk12"), NodePath("../Chunk10")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk11"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_vsxdh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk11/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk11/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ckfmr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_polgt")
+
+[node name="Chunk12" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 20, 0, -30)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk13"), NodePath("../Chunk11")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk12"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_8be8o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk12/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk12/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wl1f8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_yl7ry")
+
+[node name="Chunk13" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk14"), NodePath("../Chunk12")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk13"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_vsxdh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk13/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk13/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ckfmr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_polgt")
+
+[node name="Chunk14" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 20, 0, -10)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk15"), NodePath("../Chunk13")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk14"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_8be8o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk14/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk14/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wl1f8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_yl7ry")
+
+[node name="Chunk15" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk16"), NodePath("../Chunk14")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk15"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_vsxdh")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk15/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk15/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ckfmr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_polgt")
+
+[node name="Chunk16" type="Area3D" parent="ZoneSystem" node_paths=PackedStringArray("neighbours")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 10, 0, 0)
+script = ExtResource("4_q0jj1")
+neighbours = [NodePath("../Chunk1"), NodePath("../Chunk15")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ZoneSystem/Chunk16"]
+material_override = SubResource("StandardMaterial3D_40sri")
+mesh = SubResource("BoxMesh_8be8o")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ZoneSystem/Chunk16/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk16/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wl1f8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ZoneSystem/Chunk16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("BoxShape3D_yl7ry")
+
+[connection signal="body_entered" from="ZoneSystem/Chunk1" to="ZoneSystem/Chunk1" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk1" to="ZoneSystem/Chunk1" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk2" to="ZoneSystem/Chunk2" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk2" to="ZoneSystem/Chunk2" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk3" to="ZoneSystem/Chunk3" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk3" to="ZoneSystem/Chunk3" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk4" to="ZoneSystem/Chunk4" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk4" to="ZoneSystem/Chunk4" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk5" to="ZoneSystem/Chunk5" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk5" to="ZoneSystem/Chunk5" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk6" to="ZoneSystem/Chunk6" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk6" to="ZoneSystem/Chunk6" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk7" to="ZoneSystem/Chunk7" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk7" to="ZoneSystem/Chunk7" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk8" to="ZoneSystem/Chunk8" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk8" to="ZoneSystem/Chunk8" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk9" to="ZoneSystem/Chunk9" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk9" to="ZoneSystem/Chunk9" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk10" to="ZoneSystem/Chunk10" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk10" to="ZoneSystem/Chunk10" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk11" to="ZoneSystem/Chunk11" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk11" to="ZoneSystem/Chunk11" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk12" to="ZoneSystem/Chunk12" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk12" to="ZoneSystem/Chunk12" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk13" to="ZoneSystem/Chunk13" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk13" to="ZoneSystem/Chunk13" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk14" to="ZoneSystem/Chunk14" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk14" to="ZoneSystem/Chunk14" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk15" to="ZoneSystem/Chunk15" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk15" to="ZoneSystem/Chunk15" method="_on_body_exited"]
+[connection signal="body_entered" from="ZoneSystem/Chunk16" to="ZoneSystem/Chunk16" method="_on_body_entered"]
+[connection signal="body_exited" from="ZoneSystem/Chunk16" to="ZoneSystem/Chunk16" method="_on_body_exited"]

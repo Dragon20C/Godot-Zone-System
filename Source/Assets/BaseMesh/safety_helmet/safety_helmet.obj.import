@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c0iudqewn1dyr"
+path="res://.godot/imported/safety_helmet.obj-d1b450a7a5f55463d60936119f0ccf5a.mesh"
+
+[deps]
+
+files=["res://.godot/imported/safety_helmet.obj-d1b450a7a5f55463d60936119f0ccf5a.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/safety_helmet/safety_helmet.obj"
+dest_files=["res://.godot/imported/safety_helmet.obj-d1b450a7a5f55463d60936119f0ccf5a.mesh", "res://.godot/imported/safety_helmet.obj-d1b450a7a5f55463d60936119f0ccf5a.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

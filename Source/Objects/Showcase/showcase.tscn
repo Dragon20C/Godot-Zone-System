@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgv1n7dn84p1i"]
+
+[ext_resource type="PackedScene" uid="uid://cvirvc01txt32" path="res://Source/Objects/Screen Shaker/trauma_causer.tscn" id="1_ra3j7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ewg3a"]
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uun4x"]
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 2
+shading_mode = 0
+albedo_color = Color(0.970902, 0, 0.556707, 0.117647)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3xuyy"]
+material = SubResource("StandardMaterial3D_uun4x")
+radius = 2.0
+height = 4.0
+
+[node name="Showcase" type="Node3D"]
+
+[node name="Trauma_causer" parent="." instance=ExtResource("1_ra3j7")]
+trauma_amount = 0.6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Trauma_causer"]
+shape = SubResource("SphereShape3D_ewg3a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_3xuyy")
+
+[node name="Label3D" type="Label3D" parent="."]
+billboard = 2
+text = "Hurt Area"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="Trauma_causer" method="cause_trauma"]

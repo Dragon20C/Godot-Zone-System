@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://ct1o5gnvfe3d0"
+path="res://.godot/imported/oil_barrel.obj-f44a6980234efbb82032a1e45bfa30a8.mesh"
+
+[deps]
+
+files=["res://.godot/imported/oil_barrel.obj-f44a6980234efbb82032a1e45bfa30a8.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/oil_barrel/oil_barrel.obj"
+dest_files=["res://.godot/imported/oil_barrel.obj-f44a6980234efbb82032a1e45bfa30a8.mesh", "res://.godot/imported/oil_barrel.obj-f44a6980234efbb82032a1e45bfa30a8.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

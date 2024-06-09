@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cwc8u42545asm"
+path="res://.godot/imported/dining_chair_01.obj-02de9ca412e8a09bca30634ecf897c94.mesh"
+
+[deps]
+
+files=["res://.godot/imported/dining_chair_01.obj-02de9ca412e8a09bca30634ecf897c94.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/dining_chair_01/dining_chair_01.obj"
+dest_files=["res://.godot/imported/dining_chair_01.obj-02de9ca412e8a09bca30634ecf897c94.mesh", "res://.godot/imported/dining_chair_01.obj-02de9ca412e8a09bca30634ecf897c94.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dsvkxixdb7xse"
+path="res://.godot/imported/display_table_02.obj-839e2afa31edd3f0c91f55447272b917.mesh"
+
+[deps]
+
+files=["res://.godot/imported/display_table_02.obj-839e2afa31edd3f0c91f55447272b917.mesh"]
+
+source_file="res://Source/Assets/BaseMesh/display_table_02/display_table_02.obj"
+dest_files=["res://.godot/imported/display_table_02.obj-839e2afa31edd3f0c91f55447272b917.mesh", "res://.godot/imported/display_table_02.obj-839e2afa31edd3f0c91f55447272b917.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
